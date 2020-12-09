@@ -31,14 +31,15 @@ class CourseStudentInfo : HandyJSON {
 }
 ```
 
-接口实现API协议
+##### 接口实现API协议，每个接口都看做是一个协议，类似HTTP协议的一次请求。
 
 ```
+// 每个模块可以单独订制一个枚举
 enum BTLearnApi {
-    case mineCourse
+    case mineCourse //每个接口是一个枚举 case
 }
 
-// 实现配置信息
+// 实现配置信息，具体可配置信息参考 ApiRequestBaseObjProtocol
 extension BTLearnApi  : ApiRequestBaseObjProtocol {
     
     var baseURL: URL {
@@ -58,7 +59,7 @@ extension BTLearnApi  : ApiRequestBaseObjProtocol {
 }
 ```
 
-请求进行请求
+##### 请求进行请求
 
 ```
 var coursesApi: NetManager<RootMyCourseModel>?
@@ -90,13 +91,13 @@ self.coursesApi?.reload()
 self.coursesApi?.loadNextPage()
 ```
 
-### 其他
+#####  其他
 
-可以实现NetWorkHandleProtocol协议设置UA和signature
 
+* 可以实现NetWorkHandleProtocol协议设置UA和signature
 ```
-NetWorkHandle.shareInstance.delegate = self
 
+NetWorkHandle.shareInstance.delegate = self
 extension XXXX: NetWorkHandleProtocol {
      // 设置UA
     func getNetWorkHeaderUA() -> [String:String] {
@@ -112,7 +113,7 @@ extension XXXX: NetWorkHandleProtocol {
 }
 ```
 
-可以实现NetInterceptor协议来拦截将要发送的请求和请求回调的数据
+* 可以实现NetInterceptor协议来拦截将要发送的请求和请求回调的数据
 
 ```
 NetWorkHandle.shareInstance.adapter = self

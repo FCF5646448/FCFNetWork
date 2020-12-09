@@ -15,9 +15,14 @@ import HandyJSON
  */
 public struct Net {
     
-    private static let session: SessionManager = {
-        return SessionManager()
-    }()
+     private static let session: SessionManager = {
+           let session = SessionManager()
+           session.delegate.sessionDidReceiveChallenge = { session, challenge in
+               return (.performDefaultHandling, URLCredential(trust: challenge.protectionSpace.serverTrust!))
+           }
+           return session
+       }()
+       
     
     /*
      直接传入target，param 直接发起请求
@@ -37,7 +42,9 @@ public struct Net {
         }
     }
     
-    
+    /*
+     下载
+     */
     public static func download(_ target: NetDownloadConvertible, _ param: [String: Any]? = nil, _ adapter: NetInterceptor?) -> Download {
         let downloadRequest: URLRequest
         do {
