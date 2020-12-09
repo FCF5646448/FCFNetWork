@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (4.8.2)
+  - FCFNetWork (0.1.0):
+    - Alamofire (~> 4.8.2)
+    - HandyJSON (= 5.0.2-beta)
+  - HandyJSON (5.0.2-beta)
+
+DEPENDENCIES:
+  - FCFNetWork (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - HandyJSON
+
+EXTERNAL SOURCES:
+  FCFNetWork:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  FCFNetWork: 17a9f1f082bf1232b654b8361cf5397a9325944f
+  HandyJSON: e18b035d60cb4847c609a59bb831c5db8c549663
+
+PODFILE CHECKSUM: c96cc8688fc5bd829f954370a27e02460b7ea337
+
+COCOAPODS: 1.10.0

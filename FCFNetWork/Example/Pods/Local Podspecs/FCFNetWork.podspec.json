@@ -1,0 +1,30 @@
+{
+  "name": "FCFNetWork",
+  "version": "0.1.0",
+  "summary": "A short description of FCFNetWork.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/FCF5646448/FCFNetWork",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "FCF5646448": "2998000457@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/FCF5646448/FCFNetWork.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "FCFNetWork/Classes/**/*",
+  "dependencies": {
+    "Alamofire": [
+      "~> 4.8.2"
+    ],
+    "HandyJSON": [
+      "5.0.2-beta"
+    ]
+  }
+}

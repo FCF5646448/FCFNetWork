@@ -1,0 +1,6 @@
+framework module FCFNetWork {
+  umbrella header "FCFNetWork-umbrella.h"
+
+  export *
+  module * { export * }
+}
