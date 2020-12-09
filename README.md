@@ -5,6 +5,46 @@
 [![License](https://img.shields.io/cocoapods/l/FCFNetWork.svg?style=flat)](https://cocoapods.org/pods/FCFNetWork)
 [![Platform](https://img.shields.io/cocoapods/p/FCFNetWork.svg?style=flat)](https://cocoapods.org/pods/FCFNetWork)
 
+## 项目架构
+
+最好的Alamofire的封装库就是Moya了。但是因为Moya太高度集成了，协议内容没法修改，不是非常契合我的需求。所以就有了这个库。
+
+* 库中的kernellib是核心模块。是参照Moya进行的封装，使用协议定义一次接口请求。
+
+  主要实现了拦截器、UA、Signature等，部分需要只预留了对外接口。(ps：还有很多待优化的模块)
+
+除了kernellib，就是根据自身项目对核心模块的偏业务的封装。
+* 数据解析 BaseResponse.swift
+
+  库使用HandyJson进行数据解析。定义了一个BaseResponse来表示返回的response数据，使用泛型传入model，然后在接口返回的过程中进行了json——model的转换。
+  其次因为我的接口返回格式固定类似以下格式，所以只返回了res的数据，Model的数据也只对应res内的数据：
+```
+{
+    code: xx
+    msg: xxx
+    res: {}
+}
+
+{
+    code: xx
+    msg: xxx
+    res: [{}]
+}
+```
+* 入口NetManager.swift
+
+  这个类定义了一个统一的请求接口函数。这也是为什么要封装Alamofire的原因，就是为了统一入口。其次定义了一个偏业务层的协议：TargetIncrease。它主要是协助实现请求下一页等函数。
+```
+	public protocol TargetIncrease {
+    	var page: Int { get set }                       // 页码
+    	var pageSize: Int { get set }                   // 每页个数
+    	var fullParams: [String : Any]? { get set }     // 请求参数
+    	func reload()                                   // 重新请求
+    	func loadNextPage()                             // 请求下一页
+	}
+```
+* 其他NetWorkHandle.swift。这个类只是作为辅助来用，比如网络状态监听等。
+
 ## Example
 
 ##### 所有的mode都必须继承自HandyJSON

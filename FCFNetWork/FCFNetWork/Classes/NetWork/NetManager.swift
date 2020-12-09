@@ -18,8 +18,8 @@ public extension ApiRequestBaseObjProtocol {
     var headers: [String : String]? { NetWorkHandle.shareInstance.getRequestHeader() }
 }
 
-// 为BT APP 装门封装的协议
-public protocol BTTargetIncrease {
+// 为APP 装门封装的协议
+public protocol TargetIncrease {
     var page: Int { get set }                       // 页码
     var pageSize: Int { get set }                   // 每页个数
     var fullParams: [String : Any]? { get set }     // 请求参数
@@ -28,7 +28,7 @@ public protocol BTTargetIncrease {
 }
 
 
-public class NetManager<T: HandyJSON> : NSObject, BTTargetIncrease {
+public class NetManager<T: HandyJSON> : NSObject, TargetIncrease {
     // 实现协议属性
     public var page: Int {
         get {
